@@ -1,4 +1,4 @@
-##Novas features
+## Novas features
 
 - Colocar o about personalizável
 - Editar publicação 
