@@ -108,6 +108,7 @@ export class DashboardComponent implements OnInit {
     let data ;
 
     if(id == '8gvNivwD4eKxhKtewRG1') {
+      data = this.bioService.ptBio.value;
     } else {
       data = this.bioService.enBio.value;
     }
