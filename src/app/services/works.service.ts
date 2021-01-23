@@ -19,10 +19,16 @@ export class WorksService {
     nome: new FormControl("", Validators.required),
     subtitulo: new FormControl("", Validators.required),
     titulo: new FormControl("", Validators.required),
+    arquivado: new FormControl(false),
+    ordem: new FormControl(0, Validators.required) 
   });
 
-  getWorks() {
-    return this.firestore.collection("trabalhos").snapshotChanges();
+  getUnarchivedWorks() {
+    return this.firestore.collection('trabalhos', ref => ref.orderBy('ordem', 'asc')).snapshotChanges();
+  }
+
+  getAllWorks() {
+    return this.firestore.collection('trabalhos', ref => ref.orderBy('ordem', 'asc')).snapshotChanges();
   }
 
 

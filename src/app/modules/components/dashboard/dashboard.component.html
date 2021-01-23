@@ -2,23 +2,24 @@
 
     <div id="login_div" class="main-div text-center my-5">
         <h1>Vasco Bäuerle</h1>
-    <h4>Dashboard</h4>
-    <br />
-  
+        <h4>Dashboard</h4>
+        <br />
 
-    <div class="row">
-        <div class="col-3 mx-auto my-5">
-            <div class="form-group">
-                <input [(ngModel)]="pw" name="pw" type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="senha" required>
-            </div>
-            <div class="form-group">
-                <button type="submit" (click)="entrar()" class="btn btn-primary">Entrar</button>
+
+        <div class="row">
+            <div class="col-3 mx-auto my-5">
+                <div class="form-group">
+                    <input [(ngModel)]="pw" name="pw" type="password" name="password" class="form-control"
+                        id="exampleInputPassword1" placeholder="senha" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" (click)="entrar()" class="btn btn-primary">Entrar</button>
+                </div>
             </div>
         </div>
-    </div>
-  
 
-</div>
+
+    </div>
 
 </div>
 
@@ -27,18 +28,21 @@
 <div *ngIf="this.isLogged" class="container">
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Lista de trabalhos</a>
-          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" (click)="clearForm()" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Adicionar trabalhos</a>
-          <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Biografia</a>
-          <a class="nav-item nav-link" id="nav-contact-tab" (click)="sair()" aria-selected="false">Terminar Sessão</a>
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="true">Lista de trabalhos</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" (click)="clearForm()"
+                href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Adicionar trabalhos</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                aria-controls="nav-contact" aria-selected="false">Biografia</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" (click)="sair()" aria-selected="false">Terminar Sessão</a>
         </div>
-      </nav>
+    </nav>
 
-      <div *ngIf="this.showSuccessMessage" class="alert alert-success" >
+    <div *ngIf="this.showSuccessMessage" class="alert alert-success">
         Operação realizada com sucesso!
-      </div>
+    </div>
 
-      <div class="tab-content" id="nav-tabContent">
+    <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
 
@@ -46,70 +50,119 @@
                 <div [class]="this.selectedWork == null? 'col-12' : 'display-none'">
                     <table class="table">
                         <thead>
-                          <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Imagem de capa</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                          </tr>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Titulo</th>
+                                <th class="text-center" scope="col">Imagem de capa</th>
+                                <th class="text-center" scope="col">Ordem</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let work of works">
-                            <th class="align-middle w-25" scope="row"> works/{{ work.payload.doc.data().nome }}</th>
-                            <td class="align-middle w-25">  {{ work.payload.doc.data().titulo }}</td>
-                            <td class="align-middle w-25"><img height="60" class-="img-fluid" [src]="work.payload.doc.data().imagemCapa" /></td>
-                            <td class="align-middle text-right"><button (click)="selectWork(work.payload.doc.data().nome)" class="btn btn-dark">Editar</button></td>
-                            <td class="align-middle text-right"><button (click)="deleteWork(work)" class="btn btn-outline-danger">Eliminar</button></td>
-                          </tr>
+                            <tr *ngFor="let work of works" >
+
+                                
+                                <th class="align-middle w-25" scope="row"> works/{{ work.payload.doc.data().nome }}</th>
+                                <td class="align-middle w-25"> {{ work.payload.doc.data().titulo }}</td>
+                                <td class="align-middle w-25 text-center"><img height="60" class-="img-fluid"
+                                        [src]="work.payload.doc.data().imagemCapa" /></td>
+                                <td class="align-middle w-25 text-center"> {{ work.payload.doc.data().ordem }}</td>
+                                
+                                <td class="align-middle w-25"> 
+
+                                    <span *ngIf="work.payload.doc.data().arquivado">
+                                        <small>Arquivado</small>
+                                    </span>
+                                
+                                    
+
+
+                                </td>
+                                
+                                <td class="align-middle text-right"><button
+                                        (click)="selectWork(work.payload.doc.data().nome)"
+                                        class="btn btn-dark">Editar</button></td>
+                                <td class="align-middle text-right"><button (click)="deleteWork(work)"
+                                        class="btn btn-outline-danger">Eliminar</button></td>
+                                
+                            </tr>
                         </tbody>
-                      </table>
+                    </table>
                 </div>
 
-                <div [class]="this.selectedWork == null ? 'display-none' : 'col-12' " >
+                <div [class]="this.selectedWork == null ? 'display-none' : 'col-12' ">
 
                     <h3 *ngIf="this.selectedWork != null">Editar {{this.selectedWork.titulo}} </h3>
                     <form [formGroup]="this.worksService.form">
                         <input placeholder="Titulo" formControlName="titulo" type="text" class="form-control my-2" />
-                        <input placeholder="Imagem de capa" formControlName="imagemCapa" type="text" class="form-control my-2" />
-                        <input placeholder="Subtitulo" formControlName="subtitulo" type="text" class="form-control my-2" />
+                        <input placeholder="Imagem de capa" formControlName="imagemCapa" type="text"
+                            class="form-control my-2" />
+                        <input placeholder="Subtitulo" formControlName="subtitulo" type="text"
+                            class="form-control my-2" />
                         <input placeholder="nome" formControlName="nome" type="text" class="form-control my-2" />
-                        <textarea rows="10" placeholder="Conteudo" formControlName="conteudo" type="text" class="form-control my-2"></textarea>        
+                        <input placeholder="Ordem" formControlName="ordem" type="number" class="form-control my-2" />
+
+
+                        <textarea rows="10" placeholder="Conteudo" formControlName="conteudo" type="text"
+                            class="form-control my-2"></textarea>
                         <div class="my-5">
-                            <button class="btn btn-dark" (click)="onEdit()">
-                                Guardar
-                            </button>
-                            <button class="ml-3 btn btn-outline-dark" (click)="closeEdition()">
-                                Fechar
-                            </button>
+                            <div *ngIf="this.selectedWork != null">
+                                <button class="btn btn-outline-dark" (click)="onEdit()">
+                                    Guardar
+                                </button>
+
+                                <button (click)="arquivar()" class="ml-3 btn btn-outline-dark" *ngIf="!this.selectedWork.arquivado">
+                                    Arquivar
+                                </button>
+
+                             
+                                <button (click)="arquivar()" class="ml-3 btn btn-outline-dark" *ngIf="this.selectedWork.arquivado">
+                                    Desarquivar
+                                </button>
+
+                                <button class="ml-3 btn btn-dark" (click)="closeEdition()">
+                                    Fechar
+                                </button>
+
+                               
+                            </div>
+
                         </div>
-                       
+
                     </form>
                 </div>
-            </div>    
+            </div>
         </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
             <div class="col-sm-8 mx-auto">
 
                 <h3 class="mb-4">Adicionar novo Trabalho</h3>
-                <hr/>
+                <hr />
                 <form [formGroup]="this.worksService.form">
                     <input placeholder="Titulo" formControlName="titulo" type="text" class="form-control my-2" />
-                    <input placeholder="Imagem de capa" formControlName="imagemCapa" type="text" class="form-control my-2" />
+                    <input placeholder="Imagem de capa" formControlName="imagemCapa" type="text"
+                        class="form-control my-2" />
                     <input placeholder="Subtitulo" formControlName="subtitulo" type="text" class="form-control my-2" />
                     <input placeholder="Nome" formControlName="nome" type="text" class="form-control my-2" />
-                    <textarea rows="15" placeholder="Conteudo" formControlName="conteudo" type="text" class="form-control my-2"></textarea>
-        
+                    <input placeholder="Ordem" formControlName="ordem" type="number" class="form-control my-2" />
+
+                    <input placeholder="Arquivado" formControlName="arquivado" type="text" class="form-control my-2" />
+
+                    <textarea rows="15" placeholder="Conteudo" formControlName="conteudo" type="text"
+                        class="form-control my-2"></textarea>
+
                     <div class="mt-4">
                         <button [disabled]="!this.worksService.form.valid" class="btn btn-dark" (click)="onSubmit()">
                             Adicionar
                         </button>
                     </div>
-                   
+
                 </form>
-        
-        
+
+
             </div>
 
 
@@ -121,46 +174,48 @@
             <div class="row">
 
                 <div class="col-sm-6">
-                
+
                     <form [formGroup]="this.bioService.ptBio">
-                       
-                        <textarea rows="15" placeholder="Conteudo" formControlName="content" type="text" class="form-control my-2"></textarea>
-            
+
+                        <textarea rows="15" placeholder="Conteudo" formControlName="content" type="text"
+                            class="form-control my-2"></textarea>
+
                         <div class="mt-4">
-                            <button  class="btn btn-dark" (click)="onEditBio('8gvNivwD4eKxhKtewRG1')">
+                            <button class="btn btn-dark" (click)="onEditBio('8gvNivwD4eKxhKtewRG1')">
                                 Editar
                             </button>
                         </div>
-                       
+
                     </form>
-                    
+
                 </div>
 
                 <div class="col-sm-6">
 
                     <form [formGroup]="this.bioService.enBio">
-                       
-                        <textarea rows="15" placeholder="Conteudo" formControlName="content" type="text" class="form-control my-2"></textarea>
-            
+
+                        <textarea rows="15" placeholder="Conteudo" formControlName="content" type="text"
+                            class="form-control my-2"></textarea>
+
                         <div class="mt-4">
-                            <button  class="btn btn-dark" (click)="onEditBio('z0F3xdQAduL6YmfmyGIf')">
+                            <button class="btn btn-dark" (click)="onEditBio('z0F3xdQAduL6YmfmyGIf')">
                                 Editar
                             </button>
                         </div>
-                       
+
                     </form>
                 </div>
 
             </div>
-           
 
-          
+
+
         </div>
-      </div>
+    </div>
 
     <div class="row">
 
 
-    
-</div>
+
+    </div>
 </div>

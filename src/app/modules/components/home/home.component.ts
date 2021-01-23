@@ -8,7 +8,7 @@ import { WorksService } from 'src/app/services/works.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private worksService : WorksService) { }
+  constructor(private worksService: WorksService) { }
 
   works = [];
 
@@ -19,7 +19,20 @@ export class HomeComponent implements OnInit {
 
   getWorks = () =>
     this.worksService
-      .getWorks()
-      .subscribe(res => (this.works = res));
+      .getUnarchivedWorks()
+      .subscribe(res => {
+
+        res.forEach(element => {
+          var doc = <any>element.payload.doc.data();
+
+          if (doc.arquivado == false) {
+            this.works.push({
+              nome: doc.nome,
+              imagemCapa: doc.imagemCapa,
+              subtitulo: doc.subtitulo,
+            });
+          }
+        });
+      });
 
 }
