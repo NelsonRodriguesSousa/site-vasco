@@ -103,10 +103,13 @@ export class DashboardComponent implements OnInit {
   }
 
   onSubmit() {
+
+    // arquivado false como default
+    this.worksService.form.patchValue({ arquivado : false})
+
     let data = this.worksService.form.value;
     this.worksService.createWork(data).then(res => {
-
-
+      
       this.showSuccessMsg();
       this.selectedWork = null;
     });

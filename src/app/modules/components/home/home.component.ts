@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
     this.worksService
       .getUnarchivedWorks()
       .subscribe(res => {
+        
 
         res.forEach(element => {
           var doc = <any>element.payload.doc.data();
@@ -32,7 +33,12 @@ export class HomeComponent implements OnInit {
               subtitulo: doc.subtitulo,
             });
           }
+
+         
         });
+
+       
+
       });
 
 }

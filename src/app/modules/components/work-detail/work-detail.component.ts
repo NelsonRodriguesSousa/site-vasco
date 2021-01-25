@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { WorksService } from 'src/app/services/works.service';
 import { ActivatedRoute } from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
+
 
 
 @Component({
@@ -11,9 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WorkDetailComponent implements OnInit {
 
-  constructor(private firestore: AngularFirestore, private activatedRoute: ActivatedRoute) { }
+  constructor(private firestore: AngularFirestore, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
-  conteudo = '<div class=\"texto\">cenas</div>'
 
   work
   ngOnInit(): void {
@@ -30,13 +31,11 @@ export class WorkDetailComponent implements OnInit {
         ss.docs.forEach(doc => {
           this.work = <object>doc.data();
 
-          //var conteudo = new DOMParser().parseFromString(this.work.conteudo, "text/xml").firstChild;
-                    
-          this.work.conteudo = <string>this.work.conteudo;
+          this.work.conteudo = this.sanitizer.bypassSecurityTrustHtml(this.work.conteudo);
 
-          this.conteudo = this.work.conteudo.toString();
+
           
-          console.log(doc.data());
+          console.log(this.work.conteudo);
     
         })
       }
