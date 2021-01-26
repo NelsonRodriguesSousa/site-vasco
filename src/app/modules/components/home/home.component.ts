@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
           if (doc.arquivado == false) {
             this.works.push({
               nome: doc.nome,
+              titulo: doc.titulo,
               imagemCapa: doc.imagemCapa,
               subtitulo: doc.subtitulo,
             });
