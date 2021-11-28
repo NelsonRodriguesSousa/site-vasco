@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="page__demo">
+        <div class="page__container">
+            <div *ngFor="let work of works" class="photobox photobox_type3">
+                <a [href]="'work/' + work.nome"  >
+                    <div class="photobox__previewbox">
+                        <img [src]='work.imagemCapa' class="photobox__preview" alt="Preview">
+                    </div>
+                </a>
+                <h2>{{ work.titulo }}</h2>
+                <h3><small>{{ work.subtitulo }}</small></h3>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { DashboardComponent } from './modules/components/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { WorkComponent } from './modules/components/work/work.component';
 
 
 
@@ -25,6 +26,7 @@ import { CookieService } from 'ngx-cookie-service';
     HomeComponent,
     FooterComponent,
     DashboardComponent,
+    WorkComponent,
   ],
   imports: [
     BrowserModule,

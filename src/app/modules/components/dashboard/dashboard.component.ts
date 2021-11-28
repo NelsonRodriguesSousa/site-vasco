@@ -13,6 +13,9 @@ export class DashboardComponent implements OnInit {
   constructor(public worksService: WorksService, public bioService: BioService, public firestore: AngularFirestore, public cookieService: CookieService) { }
 
 
+
+  tipos = ['works', 'home'];
+
   showSuccessMessage = false;
 
   isLogged = false;
@@ -31,6 +34,12 @@ export class DashboardComponent implements OnInit {
 
     this.getWorks();
     this.getBios();
+  }
+
+  onTipoChanged(event) {
+
+   console.log(event.target.value);
+
   }
 
   getWorks () {
@@ -178,7 +187,8 @@ export class DashboardComponent implements OnInit {
               nome: this.selectedWork.nome,
               subtitulo: this.selectedWork.subtitulo,
               arquivado: this.selectedWork.arquivado,
-              ordem: this.selectedWork.ordem
+              ordem: this.selectedWork.ordem,
+              tipo: this.selectedWork.tipo
             });
           })
         }

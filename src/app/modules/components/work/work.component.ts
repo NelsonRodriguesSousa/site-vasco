@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { WorksService } from 'src/app/services/works.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-work',
+  templateUrl: './work.component.html',
+  styleUrls: ['./work.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class WorkComponent implements OnInit {
 
   constructor(private worksService: WorksService) { }
 
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
         res.forEach(element => {
           var doc = <any>element.payload.doc.data();
 
-          if (doc.arquivado == false && doc.tipo == "home") {
+          if (doc.arquivado == false && doc.tipo == "works") {
             this.works.push({
               nome: doc.nome,
               titulo: doc.titulo,
@@ -36,6 +36,5 @@ export class HomeComponent implements OnInit {
         });  
 
       });
-      
 
 }

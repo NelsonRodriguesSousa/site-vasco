@@ -23,8 +23,6 @@
 
 </div>
 
-
-
 <div *ngIf="this.isLogged" class="container">
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -51,9 +49,10 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th class="text-center" scope="col">Imagem de capa</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Titulo</th>
-                                <th class="text-center" scope="col">Imagem de capa</th>
+                               
                                 <th class="text-center" scope="col">Ordem</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
@@ -64,10 +63,18 @@
                             <tr *ngFor="let work of works" >
 
                                 
-                                <th class="align-middle w-25" scope="row"> works/{{ work.payload.doc.data().nome }}</th>
-                                <td class="align-middle w-25"> {{ work.payload.doc.data().titulo }}</td>
                                 <td class="align-middle w-25 text-center"><img height="60" class-="img-fluid"
-                                        [src]="work.payload.doc.data().imagemCapa" /></td>
+                                    [src]="work.payload.doc.data().imagemCapa" /></td>
+                                <th class="align-middle w-25 font-sm" scope="row"> 
+                                    <small>
+                                        {{ work.payload.doc.data().tipo }}/{{ work.payload.doc.data().nome }}
+                                    </small>
+                                </th>
+
+
+
+                                <td class="align-middle w-25"> {{ work.payload.doc.data().titulo }}</td>
+                              
                                 <td class="align-middle w-25 text-center"> {{ work.payload.doc.data().ordem }}</td>
                                 
                                 <td class="align-middle w-25"> 
@@ -104,6 +111,11 @@
                         <input placeholder="nome" formControlName="nome" type="text" class="form-control my-2" />
                         <input placeholder="Ordem" formControlName="ordem" type="number" class="form-control my-2" />
 
+                        <select class="form-control my-2" formControlName="tipo" >
+                            <option *ngFor="let tipo of tipos" >
+                                {{tipo}}
+                            </option>
+                        </select>
 
                         <textarea rows="10" placeholder="Conteudo" formControlName="conteudo" type="text"
                             class="form-control my-2"></textarea>
@@ -148,6 +160,15 @@
                     <input placeholder="Subtitulo" formControlName="subtitulo" type="text" class="form-control my-2" />
                     <input placeholder="Nome" formControlName="nome" type="text" class="form-control my-2" />
                     <input placeholder="Ordem" formControlName="ordem" type="number" class="form-control my-2" />
+
+                    <select class="form-control my-2" formControlName="tipo" >
+                        <option selected disabled>
+                            Escolher tipo
+                        </option>
+                        <option *ngFor="let tipo of tipos" >
+                            {{tipo}}
+                        </option>
+                    </select>
 
                     <textarea rows="15" placeholder="Conteudo" formControlName="conteudo" type="text"
                         class="form-control my-2"></textarea>
