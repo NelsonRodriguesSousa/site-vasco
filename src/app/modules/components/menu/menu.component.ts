@@ -11,25 +11,24 @@ export class MenuComponent implements OnInit {
 
   tipos = [];
 
-  showSecondMenu: boolean;
+  showSecondMenu: boolean = false;
 
-  constructor(private worksService: WorksService,  private activatedRoute: ActivatedRoute, private router: Router) { }
+  currentRoute : string = '';
+
+  constructor(private worksService: WorksService) { }
 
   ngOnInit(): void {
-  
+
     this.tipos = this.worksService.getTypes().filter(tipo => tipo != 'home' && tipo != 'work');
     this.tipos.unshift('all');
 
-      let array = window.location.href.split("/");
+    let array = window.location.href.split("/");
 
-      console.log(array[array.length-1]);
+    console.log(array[array.length - 1]);
 
-      let currentRoute = array[array.length-1]
+    this.currentRoute = array[array.length - 1]
 
-
-      this.showSecondMenu = !(currentRoute == 'home' || currentRoute == 'about' || currentRoute == '')
-
-  
+    this.showSecondMenu = this.tipos.includes(this.currentRoute) || this.currentRoute == 'work';
 
   }
 

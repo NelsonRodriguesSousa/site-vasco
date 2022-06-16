@@ -50,9 +50,9 @@
                         <thead>
                             <tr>
                                 <th class="text-center" scope="col">Imagem de capa</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Titulo</th>
                                
+                                <th scope="col">Titulo</th>
+
                                 <th class="text-center" scope="col">Ordem</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
@@ -60,40 +60,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let work of works" >
+                            <tr *ngFor="let work of works">
 
-                                
+
                                 <td class="align-middle w-25 text-center"><img height="60" class-="img-fluid"
-                                    [src]="work.payload.doc.data().imagemCapa" /></td>
-                                <th class="align-middle w-25 font-sm" scope="row"> 
-                                    <small>
-                                        {{ work.payload.doc.data().tipo }}/{{ work.payload.doc.data().nome }}
-                                    </small>
-                                </th>
-
-
+                                        [src]="work.payload.doc.data().imagemCapa" /></td>
 
                                 <td class="align-middle w-25"> {{ work.payload.doc.data().titulo }}</td>
-                              
+
                                 <td class="align-middle w-25 text-center"> {{ work.payload.doc.data().ordem }}</td>
-                                
-                                <td class="align-middle w-25"> 
+
+                                <td class="align-middle w-25">
 
                                     <span *ngIf="work.payload.doc.data().arquivado">
                                         <small>Arquivado</small>
                                     </span>
-                                
-                                    
-
 
                                 </td>
-                                
+
                                 <td class="align-middle text-right"><button
                                         (click)="selectWork(work.payload.doc.data().nome)"
                                         class="btn btn-dark">Editar</button></td>
                                 <td class="align-middle text-right"><button (click)="deleteWork(work)"
                                         class="btn btn-outline-danger">Eliminar</button></td>
-                                
+
                             </tr>
                         </tbody>
                     </table>
@@ -102,6 +92,7 @@
                 <div [class]="this.selectedWork == null ? 'display-none' : 'col-12' ">
 
                     <h3 *ngIf="this.selectedWork != null">Editar {{this.selectedWork.titulo}} </h3>
+                    
                     <form [formGroup]="this.worksService.form">
                         <input placeholder="Titulo" formControlName="titulo" type="text" class="form-control my-2" />
                         <input placeholder="Imagem de capa" formControlName="imagemCapa" type="text"
@@ -111,10 +102,12 @@
                         <input placeholder="nome" formControlName="nome" type="text" class="form-control my-2" />
                         <input placeholder="Ordem" formControlName="ordem" type="number" class="form-control my-2" />
 
-                        <select class="form-control my-2" formControlName="tipo" >
-                            <option *ngFor="let tipo of tipos" >
-                                {{tipo}}
-                            </option>
+                        <select class="form-control my-2" formControlName="tipo" multiple style="height: 200px">
+                            <ng-container *ngFor="let tipo of tipos">
+                                <option [selected]="this.selectedWork && selectedWork.tipo.includes(tipo)">
+                                    {{tipo}}
+                                </option>
+                            </ng-container>
                         </select>
 
                         <textarea rows="10" placeholder="Conteudo" formControlName="conteudo" type="text"
@@ -125,12 +118,14 @@
                                     Guardar
                                 </button>
 
-                                <button (click)="arquivar()" class="ml-3 btn btn-outline-dark" *ngIf="!this.selectedWork.arquivado">
+                                <button (click)="arquivar()" class="ml-3 btn btn-outline-dark"
+                                    *ngIf="!this.selectedWork.arquivado">
                                     Arquivar
                                 </button>
 
-                             
-                                <button (click)="arquivar()" class="ml-3 btn btn-outline-dark" *ngIf="this.selectedWork.arquivado">
+
+                                <button (click)="arquivar()" class="ml-3 btn btn-outline-dark"
+                                    *ngIf="this.selectedWork.arquivado">
                                     Desarquivar
                                 </button>
 
@@ -138,7 +133,7 @@
                                     Fechar
                                 </button>
 
-                               
+
                             </div>
 
                         </div>
@@ -161,11 +156,11 @@
                     <input placeholder="Nome" formControlName="nome" type="text" class="form-control my-2" />
                     <input placeholder="Ordem" formControlName="ordem" type="number" class="form-control my-2" />
 
-                    <select class="form-control my-2" formControlName="tipo" >
-                        <option selected disabled>
+                    <select class="form-control my-2" formControlName="tipo" multiple style="height: 200px;">
+                        <option disabled>
                             Escolher tipo
                         </option>
-                        <option *ngFor="let tipo of tipos" >
+                        <option *ngFor="let tipo of tipos">
                             {{tipo}}
                         </option>
                     </select>

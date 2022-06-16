@@ -1,11 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar1">
   <div class="container">
     <a class="pl-3 navbar-brand" href="/home">Vasco Bäuerle</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="nav navbar-nav ml-auto text-uppercase">
         <li class="nav-item">
           <a class="nav-link" href="/work">Work</a>
@@ -14,17 +9,21 @@
           <a class="nav-link" href="/about">About</a>
         </li>
       </ul>
-    </div>
   </div>
 </nav>
 
-
-<nav *ngIf="showSecondMenu" class="navbar navbar-expand-lg navbar-light bg-light navbar2" >
+<nav *ngIf="showSecondMenu" class="navbar navbar-expand-lg navbar-light bg-light navbar2">
   <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="nav navbar-nav ml-auto">
-        <li *ngFor="let tipo of tipos"class="nav-item">
-          <a class="nav-link text-uppercase" [href]="'/' + tipo">{{ tipo.replace('-', ' ') }}</a>
+        <li *ngFor="let tipo of tipos" class="nav-item">
+          <a class="nav-link text-uppercase" [ngClass]="tipo == this.currentRoute && 'underline'" [href]="'/' + tipo">
+            {{ tipo.replace('-', ' ') }}
+          </a>
         </li>
       </ul>
     </div>

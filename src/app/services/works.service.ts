@@ -19,7 +19,7 @@ export class WorksService {
     nome: new FormControl("", Validators.required),
     subtitulo: new FormControl("", Validators.required),
     titulo: new FormControl("", Validators.required),
-    tipo: new FormControl("", Validators.required),
+    tipo: new FormControl([], Validators.required),
     arquivado: new FormControl(false),
     ordem: new FormControl(0, Validators.required) 
   });
@@ -30,7 +30,7 @@ export class WorksService {
   getUnarchivedWorks(type) {
 
     if(type != 'all') {
-      return this.firestore.collection('trabalhos', ref => ref.orderBy('ordem', 'asc').where("arquivado", "==", false).where('tipo', '==', type)).snapshotChanges();
+      return this.firestore.collection('trabalhos', ref => ref.orderBy('ordem', 'asc').where("arquivado", "==", false).where('tipo', 'array-contains', type)).snapshotChanges();
     }  else {
       return this.firestore.collection('trabalhos', ref => ref.orderBy('ordem', 'asc').where("arquivado", "==", false)).snapshotChanges();
     }
