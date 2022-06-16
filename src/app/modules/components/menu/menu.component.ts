@@ -27,7 +27,7 @@ export class MenuComponent implements OnInit {
       let currentRoute = array[array.length-1]
 
 
-      this.showSecondMenu = !(currentRoute == 'home' || currentRoute == 'about')
+      this.showSecondMenu = !(currentRoute == 'home' || currentRoute == 'about' || currentRoute == '')
 
   
 
