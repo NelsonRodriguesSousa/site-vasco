@@ -3,6 +3,8 @@ import { WorksService } from 'src/app/services/works.service';
 import { AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
 import { BioService } from 'src/app/services/bio.service';
 import { CookieService } from 'ngx-cookie-service';
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -54,7 +56,24 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  deleteWork = data => this.worksService.deleteWork(data);
+  deleteWork(data) {
+   
+
+    Swal.fire({
+      title: 'Tem a certeza?',
+      text: "Esta ação é irreversível",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#222',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Apagar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.worksService.deleteWork(data);
+      }
+    })
+
+  }
 
   entrar() {
     if ((this.pw == 'vasco')) {
@@ -122,7 +141,7 @@ export class DashboardComponent implements OnInit {
       
       this.showSuccessMsg();
       this.selectedWork = null;
-      window.location.reload();
+    
     });
   }
 
@@ -196,4 +215,6 @@ export class DashboardComponent implements OnInit {
         }
       })
   }
+
+  
 }
