@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { WorksService } from 'src/app/services/works.service';
 
 @Component({
@@ -8,31 +9,40 @@ import { WorksService } from 'src/app/services/works.service';
 })
 export class WorkComponent implements OnInit {
 
-  constructor(private worksService: WorksService) { }
+  constructor(private worksService: WorksService, private activatedRoute: ActivatedRoute,) { }
 
   works = [];
 
   ngOnInit(): void {
 
-    this.getWorks();
+    console.log("entrou aqui");
+
+
+    var nome = this.activatedRoute.snapshot.paramMap.get('name');
+
+    this.getWorks(nome);
+
+
+    // receber o que vem no url
+   
+
   }
 
-  getWorks = () =>
+  getWorks = (type) =>
     this.worksService
-      .getUnarchivedWorks()
+      .getUnarchivedWorks(type)
       .subscribe(res => {
 
         res.forEach(element => {
           var doc = <any>element.payload.doc.data();
 
-          if (doc.arquivado == false && doc.tipo == "works") {
             this.works.push({
               nome: doc.nome,
               titulo: doc.titulo,
               imagemCapa: doc.imagemCapa,
               subtitulo: doc.subtitulo,
             });
-          }
+          
         });  
 
       });

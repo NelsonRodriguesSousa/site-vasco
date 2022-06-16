@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './modules/components/menu/menu.component';
 import { BioComponent } from './modules/components/bio/bio.component';
 import { WorkDetailComponent } from './modules/components/work-detail/work-detail.component';
-import { HomeComponent } from './modules/components/home/home.component';
 import { FooterComponent } from './modules/components/footer/footer.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
@@ -23,7 +22,6 @@ import { WorkComponent } from './modules/components/work/work.component';
     MenuComponent,
     BioComponent,
     WorkDetailComponent,
-    HomeComponent,
     FooterComponent,
     DashboardComponent,
     WorkComponent,

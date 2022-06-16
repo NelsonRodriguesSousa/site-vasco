@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WorksService } from 'src/app/services/works.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  tipos = [];
+
+  constructor(private worksService: WorksService) { }
 
   ngOnInit(): void {
+  
+    this.tipos = this.worksService.getTypes().filter(tipo => tipo != 'home' && tipo != 'works');
+    this.tipos.unshift('all');
   }
 
 }

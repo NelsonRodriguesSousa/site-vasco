@@ -24,8 +24,17 @@ export class WorksService {
     ordem: new FormControl(0, Validators.required) 
   });
 
-  getUnarchivedWorks() {
-    return this.firestore.collection('trabalhos', ref => ref.orderBy('ordem', 'asc')).snapshotChanges();
+  types = ['work', 'home', 'cinematography', 'color-grading', 'commercial'];
+
+
+  getUnarchivedWorks(type) {
+
+    if(type != 'all') {
+      return this.firestore.collection('trabalhos', ref => ref.orderBy('ordem', 'asc').where("arquivado", "==", false).where('tipo', '==', type)).snapshotChanges();
+    }  else {
+      return this.firestore.collection('trabalhos', ref => ref.orderBy('ordem', 'asc').where("arquivado", "==", false)).snapshotChanges();
+    }
+
   }
 
   getAllWorks() {
@@ -55,6 +64,10 @@ export class WorksService {
       .collection("trabalhos")
       .doc(data.payload.doc.id)
       .delete();
+  }
+
+  getTypes() {
+    return this.types;
   }
 
 }
