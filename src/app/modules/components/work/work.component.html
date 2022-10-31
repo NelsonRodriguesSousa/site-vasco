@@ -1,15 +1,16 @@
+
 <div class="container">
-    <div class="page__demo">
-        <div class="page__container">
-            <div *ngFor="let work of works" class="photobox photobox_type3">
-                <a [href]="'work/' + work.nome"  >
-                    <div class="photobox__previewbox">
-                        <img [src]='work.imagemCapa' class="photobox__preview" alt="Preview">
-                    </div>
-                </a>
-                <h2>{{ work.titulo }}</h2>
-                <h3><small>{{ work.subtitulo }}</small></h3>
-            </div>
+    <div class="row my-3">
+        <div *ngFor="let work of works" class="col-sm-4 my-3">
+            <a [href]="'work/' + work.nome" >
+            <div class="card border-0">
+                <img class="card-img-top" [src]='work.imagemCapa' alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ work.titulo }}</h5>
+                  <p class="card-text">{{ work.subtitulo }}</p>
+                </div>
+              </div>
+            </a>
         </div>
     </div>
 </div>
