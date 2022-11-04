@@ -100,11 +100,13 @@ export class DashboardComponent implements OnInit {
       conteudo: this.selectedWork.conteudo,
       imagemCapa: this.selectedWork.imagemCapa,
       titulo: this.selectedWork.titulo,
+      titulo_en: this.selectedWork.titulo_en,
       nome: this.selectedWork.nome,
       subtitulo: this.selectedWork.subtitulo,
       arquivado: !this.selectedWork.arquivado,
       ordem: this.selectedWork.ordem,
       tipo: this.selectedWork.tipo,
+
     });
 
     this.onEdit();
@@ -206,6 +208,7 @@ export class DashboardComponent implements OnInit {
               conteudo: this.selectedWork.conteudo,
               imagemCapa: this.selectedWork.imagemCapa,
               titulo: this.selectedWork.titulo,
+              titulo_en: this.selectedWork.titulo_en,
               nome: this.selectedWork.nome,
               subtitulo: this.selectedWork.subtitulo,
               arquivado: this.selectedWork.arquivado,

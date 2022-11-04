@@ -41,9 +41,9 @@ export class WorkComponent implements OnInit {
               titulo: doc.titulo,
               imagemCapa: doc.imagemCapa,
               subtitulo: doc.subtitulo,
-            });
-          
-        });  
+              titulo_en : doc.titulo_en
+            });        
+        });
 
       });
 

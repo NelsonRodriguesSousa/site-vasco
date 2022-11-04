@@ -19,6 +19,7 @@ export class WorksService {
     nome: new FormControl("", Validators.required),
     subtitulo: new FormControl("", Validators.required),
     titulo: new FormControl("", Validators.required),
+    titulo_en: new FormControl("", Validators.required),
     tipo: new FormControl([], Validators.required),
     arquivado: new FormControl(false),
     ordem: new FormControl(0, Validators.required) 

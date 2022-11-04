@@ -95,6 +95,9 @@
                     
                     <form [formGroup]="this.worksService.form">
                         <input placeholder="Titulo" formControlName="titulo" type="text" class="form-control my-2" />
+
+                        <input placeholder="Titulo Ingles" formControlName="titulo_en" type="text" class="form-control my-2" />
+
                         <input placeholder="Imagem de capa" formControlName="imagemCapa" type="text"
                             class="form-control my-2" />
                         <input placeholder="Subtitulo" formControlName="subtitulo" type="text"
@@ -150,6 +153,7 @@
                 <hr />
                 <form [formGroup]="this.worksService.form">
                     <input placeholder="Titulo" formControlName="titulo" type="text" class="form-control my-2" />
+                    <input placeholder="Titulo EN" formControlName="titulo_en" type="text" class="form-control my-2" />
                     <input placeholder="Imagem de capa" formControlName="imagemCapa" type="text"
                         class="form-control my-2" />
                     <input placeholder="Subtitulo" formControlName="subtitulo" type="text" class="form-control my-2" />
