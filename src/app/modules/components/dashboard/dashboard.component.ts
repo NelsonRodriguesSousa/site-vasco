@@ -103,7 +103,8 @@ export class DashboardComponent implements OnInit {
       nome: this.selectedWork.nome,
       subtitulo: this.selectedWork.subtitulo,
       arquivado: !this.selectedWork.arquivado,
-      ordem: this.selectedWork.ordem
+      ordem: this.selectedWork.ordem,
+      tipo: this.selectedWork.tipo,
     });
 
     this.onEdit();
