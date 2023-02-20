@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" *ngIf="this.type != 'home'">
     <div class="row my-3">
         <div *ngFor="let work of works" class="col-sm-4 my-3">
             <a [href]="'work/' + work.nome" >
@@ -14,4 +14,31 @@
             </a>
         </div>
     </div>
+</div>
+
+<div class="container home-showcase" *ngIf="this.type == 'home'">
+  <div class="row" >
+    <ng-container *ngFor="let work of works; let i = index" >
+      <div class="col-sm-12 mt-3" *ngIf="i % 4 == 0"> <!-- 0, 4, 8 , 12, 16... -->   
+        <a [href]="'work/' + work.nome" >
+          <img class="img-fluid w-49" [src]='work.imagemCapa'>   
+        </a>  
+      </div>
+      <div class="col-sm-12 text-right mt-3" *ngIf="indexesSegundaLinha.includes(i)" >
+        <a [href]="'work/' + work.nome" >
+          <img class="img-fluid w-80" [src]='work.imagemCapa'>
+        </a>
+      </div> 
+      <div class="col-sm-6 mt-3 mt-special" *ngIf="indexesTerceiraLinha.includes(i)" > 
+        <a [href]="'work/' + work.nome" >    
+          <img  class="img-fluid" [src]='work.imagemCapa'>     
+        </a>
+      </div>
+      <div class="col-sm-6 mt-3"  *ngIf="indexesQuartaLinha.includes(i)" >   
+        <a [href]="'work/' + work.nome" >    
+          <img class="img-fluid" [src]='work.imagemCapa'>
+        </a>       
+      </div>
+    </ng-container>
+  </div>
 </div>

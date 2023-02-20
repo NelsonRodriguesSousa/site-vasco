@@ -13,16 +13,31 @@ export class WorkComponent implements OnInit {
 
   works = [];
 
+  type: any = "";
+
+  indexesSegundaLinha = [1,5,9,13,17,21,25];
+  indexesTerceiraLinha = [2,6,10,14,18,22,27];
+  indexesQuartaLinha = [3,7,11,15,19,23,27];
+
   ngOnInit(): void {
 
-    console.log("entrou aqui");
+    this.type = this.activatedRoute.snapshot.paramMap.get('name');;
 
+    this.getWorks(this.type);
 
-    var nome = this.activatedRoute.snapshot.paramMap.get('name');
+    /*
+    this.works = [
+      { nome: "FEBRE POSTAL", titulo: "POSTAL FEVER", imagemCapa: "https://imgur.com/dBBiP8T.jpg", subtitulo: "DOC. Portugal. 2023", titulo_en: "Febre Postal" },
+      { nome: "ARMOUR", titulo: "ARMOUR", imagemCapa: "https://imgur.com/atAoCVo.jpg", subtitulo: "FIC. Portugal. 2023", titulo_en: "Desarme" },
+      { nome: "Poente", titulo: "EVENTIDE", imagemCapa: "https://imgur.com/y70JZ1M.jpg", subtitulo: "FIC. Portugal. 2021", titulo_en: "Poente" },
+      { nome: "Auspício", titulo: "AUSPICE", imagemCapa: "https://i.imgur.com/VOiu56R.jpg", subtitulo: "FIC. Portugal/ Brasil. 2019", titulo_en: "Auspício" },
 
-    this.getWorks(nome);
-
-
+      { nome: "ARMOUR", titulo: "ARMOUR", imagemCapa: "https://imgur.com/atAoCVo.jpg", subtitulo: "FIC. Portugal. 2023", titulo_en: "Desarme" },
+      { nome: "Auspício", titulo: "AUSPICE", imagemCapa: "https://i.imgur.com/VOiu56R.jpg", subtitulo: "FIC. Portugal/ Brasil. 2019", titulo_en: "Auspício" },
+      { nome: "FEBRE POSTAL", titulo: "POSTAL FEVER", imagemCapa: "https://imgur.com/dBBiP8T.jpg", subtitulo: "DOC. Portugal. 2023", titulo_en: "Febre Postal" },
+      { nome: "Poente", titulo: "EVENTIDE", imagemCapa: "https://imgur.com/y70JZ1M.jpg", subtitulo: "FIC. Portugal. 2021", titulo_en: "Poente" },
+    ]
+    */
     // receber o que vem no url
    
 

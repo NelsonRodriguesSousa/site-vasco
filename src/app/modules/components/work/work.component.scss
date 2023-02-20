@@ -17,7 +17,38 @@
 }
 
 .card-title {
-    font-weight: bold;
     font-size: 16px;
 }
 
+
+.home-container {
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+  }
+
+.break {
+    width: 100%;
+  }
+
+.w-80 {
+    width: 80%;
+}
+
+.w-49 {
+    width: 49%;
+}
+
+.mt-special {
+    margin-top: 100px !important;
+}
+
+@media screen and (max-width: 480px){
+    .w-80, .w-49 {
+        width: 100%;
+    }
+
+    .mt-special {
+        margin-top: 0;
+    }
+  }
